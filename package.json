@@ -1,0 +1,19 @@
+{
+  "name": "js-project-boilerplate",
+  "version": "1.0.0",
+  "description": "Next project best choices as an boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "js",
+    "react",
+    "boilerplate",
+    "x-team",
+    "test",
+    "webpack"
+  ],
+  "author": "Kamil Ronewicz <kamil.ronewicz@x-team.com>",
+  "license": "MIT"
+}
