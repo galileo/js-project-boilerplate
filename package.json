@@ -2,10 +2,13 @@
   "name": "js-project-boilerplate",
   "version": "1.0.0",
   "description": "Next project best choices as an boilerplate",
-  "main": "src/index.js",
+  "main": "src/App.jsx",
   "scripts": {
+    "start": "babel-node devServer.js",
     "test": "jest",
-    "webpack": "webpack --progress --colors --watch"
+    "webpack": "webpack --progress --colors --watch",
+    "dev-docker": "../node_modules/nodemon/bin/nodemon.js --debug=5858",
+    "dev-host": "nodemon --debug=5858"
   },
   "keywords": [
     "js",
@@ -24,8 +27,11 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "express": "^4.15.3",
     "file-loader": "^0.11.1",
     "jest": "^20.0.4",
+    "morgan": "^1.8.2",
+    "nodemon": "^1.11.0",
     "style-loader": "^0.18.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",

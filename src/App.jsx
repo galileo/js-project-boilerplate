@@ -1,1 +1,4 @@
-alert('Hello, world')
+import HelloWorldComponent from './components/HelloWorldComponent'
+
+HelloWorldComponent()
+console.log('Hello, world')
