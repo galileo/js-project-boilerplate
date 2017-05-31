@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 module.exports = {
   entry: [
-    // 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
+    'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './src/App.jsx'
   ],
   output: {
@@ -21,8 +21,19 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.jsx?$/,
-        exclude: /(node_modules)/,
+        loader: 'standard-loader',
+        exclude: /node_modules/,
+        options: {
+          error: false,
+          snazzy: true,
+          parser: 'babel-eslint'
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
         loader: 'babel-loader'
       },
       {

@@ -4,6 +4,7 @@ const path = require('path')
 const express = require('express')
 const dockerServer = require('./dockerServerSetup')
 const webpackConfig = require('./webpack.config')
+const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpackMiddleware = require('webpack-dev-middleware')
 
 const compiler = webpack(webpackConfig)
@@ -12,8 +13,10 @@ const app = express()
 
 app.use(webpackMiddleware(compiler, {
   noInfo: false,
-  publicPath: '/dist'
+  publicPath: webpackConfig.output.publicPath
 }))
+
+app.use(webpackHotMiddleware(compiler));
 
 dockerServer(app, process)
 
