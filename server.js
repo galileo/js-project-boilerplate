@@ -1,24 +1,16 @@
 const fs = require('fs')
-const webpack = require('webpack')
 const path = require('path')
 const express = require('express')
-const dockerServer = require('./dockerServerSetup')
-const webpackConfig = require('./webpack.config')
-const webpackHotMiddleware = require('webpack-hot-middleware')
-const webpackMiddleware = require('webpack-dev-middleware')
 
-const compiler = webpack(webpackConfig)
 const PORT = process.env.PORT || 8080
 const app = express()
 
-app.use(webpackMiddleware(compiler, {
-  noInfo: false,
-  publicPath: webpackConfig.output.publicPath
-}))
+const setups = [
+  require('./server/serverDevelopmentSetup'),
+  require('./server/serverDockerSetup')
+]
 
-app.use(webpackHotMiddleware(compiler));
-
-dockerServer(app, process)
+setups.map(function (setup) { setup(app, process)})
 
 app.get('/', function (req, res) {
   res.send(fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8'))

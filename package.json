@@ -21,6 +21,7 @@
   "author": "Kamil Ronewicz <kamil.ronewicz@x-team.com>",
   "license": "MIT",
   "devDependencies": {
+    "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
