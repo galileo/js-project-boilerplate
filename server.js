@@ -1,22 +1,23 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
+const dockerSetup = require('./server/serverDockerSetup')
 
 const PORT = process.env.PORT || 8080
 const app = express()
 
 const setups = [
   require('./server/serverDevelopmentSetup'),
-  require('./server/serverDockerSetup')
+  dockerSetup.setup
 ]
 
-setups.map(function (setup) { setup(app, process)})
+setups.map(function (setup) { setup(app, process) })
 
 app.get('/', function (req, res) {
   res.send(fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8'))
 })
 
-app.listen(PORT, function (error) {
+const server = app.listen(PORT, function (error) {
   if (error) {
     console.error(error)
   } else {
@@ -27,3 +28,5 @@ app.listen(PORT, function (error) {
     )
   }
 })
+
+dockerSetup.registerGracefulShutdown(server)
