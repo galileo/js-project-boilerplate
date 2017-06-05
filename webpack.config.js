@@ -16,13 +16,24 @@ module.exports = {
       react: path.resolve(__dirname, './node_modules/react'),
       React: path.resolve(__dirname, './node_modules/react')
     },
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx']
   },
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
+        loader: 'standard-loader',
+        exclude: /node_modules/,
+        options: {
+          error: false,
+          snazzy: true,
+          parser: 'babel-eslint'
+        }
+      },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
         loader: 'babel-loader'
       },
       {
