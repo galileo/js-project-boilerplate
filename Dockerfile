@@ -1,5 +1,6 @@
 # if you're doing anything beyond your local machine, please pin this to a specific version at https://hub.docker.com/_/node/
-FROM node:7.7-alpine
+FROM node:7.7
+# <flow - requirements> before it was `7.7-alpine`
 
 RUN mkdir -p /opt/app
 
@@ -13,13 +14,19 @@ ARG PORT=80
 ENV PORT $PORT
 EXPOSE $PORT 5858 9229
 
+# <flow - start>
+RUN apt-get update \
+  && apt-get install -y ocaml libelf-dev \
+  --no-install-recommends && rm -r /var/lib/apt/lists/*
+# <flow - end - requiements to start flow with tests>
+
 # check every 30s to ensure this service returns HTTP 200
 HEALTHCHECK CMD curl -fs http://localhost:$PORT/healthz || exit 1
 
 # install dependencies first, in a different location for easier app bind mounting for local development
 WORKDIR /opt
 COPY package.json /opt
-RUN npm install && npm cache clean
+RUN yarn install && yarn cache clean
 ENV PATH /opt/node_modules/.bin:$PATH
 
 # copy in our source code last, as it changes the most
