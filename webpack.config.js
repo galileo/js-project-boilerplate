@@ -1,6 +1,8 @@
 const path = require('path')
 const webpack = require('webpack')
 
+var FlowtypePlugin = require('flowtype-loader/plugin')
+
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
@@ -24,7 +26,13 @@ module.exports = {
         enforce: 'pre',
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: "eslint-loader"
+        loader: 'eslint-loader'
+      },
+      {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        loader: 'flowtype-loader',
+        exclude: /node_modules/
       },
       {
         test: /\.jsx?$/,
@@ -50,6 +58,7 @@ module.exports = {
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new FlowtypePlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin()
   ]

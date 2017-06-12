@@ -1,9 +1,13 @@
 {
-  "extends": "standard",
+  "extends": [
+    "standard",
+    "plugin:flowtype/recommended"
+  ],
   "env": {
     "jest": true
   },
   "plugins": [
+    "flowtype",
     "compat"
   ],
   "rules": {
