@@ -23,13 +23,8 @@ module.exports = {
       {
         enforce: 'pre',
         test: /\.jsx?$/,
-        loader: 'standard-loader',
         exclude: /node_modules/,
-        options: {
-          error: false,
-          snazzy: true,
-          parser: 'babel-eslint'
-        }
+        loader: "eslint-loader"
       },
       {
         test: /\.jsx?$/,
