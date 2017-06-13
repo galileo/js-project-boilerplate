@@ -36,16 +36,46 @@ Please start first the dev `up` to build the proper image.
 
 ## Git hooks
 
-There problem around hooks within Docker container world you can take, several approaches but none of it is looking as 
-an right solution.
+For hooks there is no real handy solution, to get the full out of them you need either install `npm`, `yarn` and all 
+modules on host or get into container and do all things from container.
 
-1. You need yarn on your host machine - but this also means that you need ot install all modules on your host.
-2. You can use `./git` command from this directory - which is shortcut for running git within container
-3. Create 
 
-Limitations of point `2`
-> As we are using docker-compose to run our git command and to be able to guess the container name we are not allowed to
-use interactive shell. So we just can use simple git actions
+### 1. Install yarn on host
+
+This is not the best solution but it will work perfectly, but since we want to move all our dependencies to docker 
+container you can consider this solution if you want the comfort of using git
+
+### 2. Exec to the container
+
+Second solution which will suite all you needs is to log in into container, with docker-compose command
+
+```
+docker-compose exec node bash
+
+// Use git as you would normally do
+```
+
+> In this method you need to setup your user `email` and `name` locally for the git, so use `git config --local` command
+
+```
+git config --local user.name 'Kamil Ronewicz'
+git config --local user.email 'your@email.com'
+```
+
+### Use shortcut command ./git
+
+You can use `./git` command from this directory - which is shortcut for running git within container.
+
+> Known limitations for this method
+There is a problem with passing quote and singleqoute signs so you can not use the commit command with message longer
+than one word
+
+```
+// ./git use case
+
+./git commit -m Success // This works
+./git commit -m "Added husky" // this will not work !!!!!! :(
+```
 
 ## Heavy libraries
 
