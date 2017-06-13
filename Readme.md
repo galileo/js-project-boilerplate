@@ -14,3 +14,10 @@ docker-compose up -d
 You can now open your browser and go to the `http://localhost/` url. The project should be prepared for development. You can even start your debugging with NiM or just go to the docker logs -f and get the url address for devtools debugging.
 
 There is also predefined `Visual Studio Code` configuration, you just need to go to this branch `.vscode-config`.
+
+## Heavy libraries
+
+Sometimes we don't need to have all those js goodies at once so here are some
+extracted libraries that are slowing down the development build process and maybe somebody does not requires it all.
+
+- [Flow](../../tree/flow) - With installed binaries and webpack loader
