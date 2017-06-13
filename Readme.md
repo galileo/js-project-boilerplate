@@ -21,3 +21,5 @@ Sometimes we don't need to have all those js goodies at once so here are some
 extracted libraries that are slowing down the development build process and maybe somebody does not requires it all.
 
 - [Flow](../../tree/flow) - With installed binaries and webpack loader
+- [Husky](../../tree/husky) - You can use it if you want to have the possibility to use git hooks, but be aware about
+the limitations, you can read more about in Readme there
