@@ -1,6 +1,9 @@
 # if you're doing anything beyond your local machine, please pin this to a specific version at https://hub.docker.com/_/node/
 FROM node:7.7
 
+# Install git in alpine [dev-only]
+RUN apk update && apk add git
+
 RUN mkdir -p /opt/app
 
 # set our node environment, either development or production
