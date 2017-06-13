@@ -2,7 +2,7 @@
 FROM node:7.7
 
 # Install git in alpine [dev-only]
-RUN apk update && apk add git
+#RUN apt-get update && apt-get install -y git
 
 RUN mkdir -p /opt/app
 

@@ -34,6 +34,19 @@ docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --force-re
 Important:
 Please start first the dev `up` to build the proper image.
 
+## Git hooks
+
+There problem around hooks within Docker container world you can take, several approaches but none of it is looking as 
+an right solution.
+
+1. You need yarn on your host machine - but this also means that you need ot install all modules on your host.
+2. You can use `./git` command from this directory - which is shortcut for running git within container
+3. Create 
+
+Limitations of point `2`
+> As we are using docker-compose to run our git command and to be able to guess the container name we are not allowed to
+use interactive shell. So we just can use simple git actions
+
 ## Heavy libraries
 
 Sometimes we don't need to have all those js goodies at once so here are some
