@@ -10,6 +10,7 @@
     "start": "yarn dev:docker",
     "test": "eslint src --ext .jsx,.js && jest --coverage && flow",
     "webpack": "webpack --progress --colors",
+<<<<<<< HEAD
     "prod:docker": "yarn prod:build && yarn prod:start",
     "prod:build": "rimraf lib && babel src -d lib --ignore .test.js,.spec.js",
     "prod:start": "node lib/server/server.js",
@@ -17,6 +18,11 @@
     "dev:docker": "./node_modules/nodemon/bin/nodemon.js --inspect=0.0.0.0:9229 server.js --exec babel-node",
     "dev:host": "./node_modules/nodemon/bin/nodemon.js --inspect src/server/server.js --exec babel-node"
     "precommit": "yarn test",
+=======
+    "dev-docker": ".node_modules/.bin/nodemon/nodemon --inspect=0.0.0.0:9229 server.js",
+    "dev-host": "nodemon --inspect",
+    "precommit": "yarn test"
+>>>>>>> Improve readme and package
   },
   "keywords": [
     "js",

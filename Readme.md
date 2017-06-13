@@ -77,6 +77,18 @@ than one word
 ./git commit -m "Added husky" // this will not work !!!!!! :(
 ```
 
+<<<<<<< HEAD
+=======
+> Second know limitation
+It is impossible to push your data to your repository without adding your certificates to container, so you should use
+push from your local machine.
+
+
+Conclusion:
+With all those limitations we can came with an conslusion that still the best approach would be the `1` solution
+where we install all those dependencies on your host machine. But this is up to you how you want to use it.
+
+>>>>>>> Improve readme and package
 ## Heavy libraries
 
 Sometimes we don't need to have all those js goodies at once so here are some
