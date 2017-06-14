@@ -1,13 +1,14 @@
-const path = require('path')
-const webpack = require('webpack')
+import path from 'path'
+import webpack from 'webpack'
+import { isProd } from './src/shared/util'
 
-module.exports = {
+export default {
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './src/frontend/App.jsx'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     publicPath: '/static/'
   },
@@ -18,6 +19,7 @@ module.exports = {
     },
     extensions: ['.js', '.jsx']
   },
+  devtool: isProd ? false : 'source-map',
   module: {
     rules: [
       {
