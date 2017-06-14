@@ -16,6 +16,7 @@
     "dev:start": "babel-node src/server/server.js",
     "dev:docker": "./node_modules/nodemon/bin/nodemon.js --inspect=0.0.0.0:9229 server.js --exec babel-node",
     "dev:host": "./node_modules/nodemon/bin/nodemon.js --inspect src/server/server.js --exec babel-node"
+    "precommit": "yarn test"
   },
   "keywords": [
     "js",
@@ -49,8 +50,12 @@
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^3.0.1",
     "file-loader": "^0.11.1",
+<<<<<<< HEAD
     "flow-bin": "^0.47.0",
     "flowtype-loader": "^0.2.2",
+=======
+    "husky": "^0.13.4",
+>>>>>>> No npm and yarn on host
     "jest": "^20.0.4",
     "morgan": "^1.8.2",
     "nodemon": "^1.11.0",
