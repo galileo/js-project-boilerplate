@@ -1,30 +1,41 @@
-const fs = require('fs')
-const path = require('path')
-const express = require('express')
-const dockerSetup = require('./server/serverDockerSetup')
+import express from 'express'
+import compression from 'compression'
+import dockerSetup from './server/serverDockerSetup'
+import serverDevelopmentSetup from './server/serverDevelopmentSetup'
+import { WEB_PORT, APP_NAME, STATIC_PATH } from './src/shared/config'
+import { isProd } from './src/shared/util'
+import tpl from './src/server/render-app'
 
-const PORT = process.env.PORT || 8080
 const app = express()
 
 const setups = [
-  require('./server/serverDevelopmentSetup'),
   dockerSetup.setup
 ]
+
+if (!isProd) {
+  console.log('deve')
+  // setups.push(serverDevelopmentSetup)
+} else {
+  app.use(compression())
+  app.use(STATIC_PATH, express.static('dist'))
+  app.use(STATIC_PATH, express.static('public'))
+}
 
 setups.map(function (setup) { setup(app, process) })
 
 app.get('/', function (req, res) {
-  res.send(fs.readFileSync(path.join(__dirname, 'index.html'), 'utf8'))
+  res.send(tpl(APP_NAME))
 })
 
-const server = app.listen(PORT, function (error) {
+const server = app.listen(WEB_PORT, function (error) {
   if (error) {
     console.error(error)
   } else {
+    console.info(isProd ? 'Production env' : 'Development env')
     console.info(
       '🌎 Listening on port %s (Docker). Open up http://localhost%s in your browser.',
-      PORT,
-      PORT === 80 ? '' : ':' + PORT
+      WEB_PORT,
+      WEB_PORT === 80 ? '' : ':' + WEB_PORT
     )
   }
 })

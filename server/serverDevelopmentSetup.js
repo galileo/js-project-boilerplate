@@ -1,12 +1,11 @@
-const webpack = require('webpack')
-const webpackHotMiddleware = require('webpack-hot-middleware')
-const webpackMiddleware = require('webpack-dev-middleware')
-const webpackConfig = require('../webpack.config')
+import webpack from 'webpack'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import webpackMiddleware from 'webpack-dev-middleware'
+import webpackConfig from '../webpack.config'
+import { isProd } from '../src/shared/util'
 
-module.exports = function (app, process) {
-  // validate app and process
-
-  if (process.env.NODE_ENV === 'development') {
+export default function (app) {
+  if (!isProd) {
     const compiler = webpack(webpackConfig)
 
     app.use(webpackMiddleware(compiler, {

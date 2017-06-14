@@ -1,7 +1,24 @@
 const morgan = require('morgan')
-var server = null
 
-module.exports = {
+let server = null
+
+// shut down server
+function shutdown () {
+  if (server === null) {
+    console.error('server was not defined we can not properly stop it', new Date().toISOString())
+    return
+  }
+
+  server.close(function onServerClosed (err) {
+    if (err) {
+      console.error(err)
+      process.exitCode = 1
+    }
+    process.exit()
+  })
+}
+
+export default {
   setup: function (app, process) {
     app.use(morgan('common'))
 
@@ -24,20 +41,4 @@ module.exports = {
   registerGracefulShutdown: function (init) {
     server = init
   }
-}
-
-// shut down server
-function shutdown () {
-  if (server === null) {
-    console.error('server was not defined we can not properly stop it', new Date().toISOString())
-    return
-  }
-
-  server.close(function onServerClosed (err) {
-    if (err) {
-      console.error(err)
-      process.exitCode = 1
-    }
-    process.exit()
-  })
 }

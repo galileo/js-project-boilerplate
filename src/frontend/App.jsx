@@ -1,4 +1,4 @@
-import style from '../style/style.css'
+import style from '../../public/css/style.css'
 import HelloWorldComponent from './components/HelloWorldComponent'
 
 HelloWorldComponent(style)
