@@ -14,7 +14,7 @@ const renderApp = (title) => (
   <body>
     <h1>${title}</h1>
   
-    <div class="container" id="root"></div>
+    <div class="root-application container"></div>
   
     <script src="${STATIC_PATH}/bundle.js"></script>
   </body>
