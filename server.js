@@ -1,8 +1,8 @@
 import express from 'express'
-import compression from 'compression'
 import dockerSetup from './server/serverDockerSetup'
 import serverDevelopmentSetup from './server/serverDevelopmentSetup'
-import { WEB_PORT, APP_NAME, STATIC_PATH } from './src/shared/config'
+import serverProductionSetup from './server/serverProductionSetup'
+import { WEB_PORT, APP_NAME } from './src/shared/config'
 import { isProd } from './src/shared/util'
 import tpl from './src/server/render-app'
 
@@ -12,13 +12,10 @@ const setups = [
   dockerSetup.setup
 ]
 
-if (!isProd) {
-  console.log('deve')
-  // setups.push(serverDevelopmentSetup)
+if (isProd) {
+  setups.push(serverProductionSetup)
 } else {
-  app.use(compression())
-  app.use(STATIC_PATH, express.static('dist'))
-  app.use(STATIC_PATH, express.static('public'))
+  setups.push(serverDevelopmentSetup)
 }
 
 setups.map(function (setup) { setup(app, process) })
