@@ -1,4 +1,5 @@
 import { STATIC_PATH } from '../shared/config'
+import { isProd } from '../shared/util'
 
 const renderApp = (title) => (
   `<!doctype html>
@@ -9,7 +10,7 @@ const renderApp = (title) => (
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>${title}</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="${STATIC_PATH}/css/style.css">
+    ${!isProd ? '' : '<link rel="stylesheet" href="' + STATIC_PATH + '/css/style.css">'}
   </head>
   <body>
     <h1>${title}</h1>
