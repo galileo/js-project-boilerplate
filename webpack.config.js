@@ -4,7 +4,7 @@ const webpack = require('webpack')
 module.exports = {
   entry: [
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './src/App.jsx'
+    './src/frontend/App.jsx'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
