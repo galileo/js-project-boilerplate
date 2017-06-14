@@ -25,6 +25,7 @@ HEALTHCHECK CMD curl -fs http://localhost:$PORT/healthz || exit 1
 # install dependencies first, in a different location for easier app bind mounting for local development
 WORKDIR /opt
 COPY package.json /opt
+COPY yarn.lock /opt
 RUN yarn install && yarn cache clean
 ENV PATH /opt/node_modules/.bin:$PATH
 
