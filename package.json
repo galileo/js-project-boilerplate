@@ -10,9 +10,12 @@
     "start": "yarn dev:docker",
     "test": "eslint src --ext .jsx,.js && jest --coverage && flow",
     "webpack": "webpack --progress --colors",
-    "prod:build": "rimraf lib && babel src -d lib --ignore .spec.js,.test.js",
+    "prod:build": "rimraf lib && babel src -d lib --ignore .test.js,.spec.js",
+    "prod:start": "pm2 start lib/server/server.js",
+    "prod:start-log": "pm2 start lib/server/server.js && pm2 logs",
+    "prod:docker": "yarn prod:build && yarn prod:start-log",
     "dev:docker": "./node_modules/nodemon/bin/nodemon.js --inspect=0.0.0.0:9229 server.js --exec babel-node",
-    "dev:host": "./node_modules/nodemon/bin/nodemon.js --inspect server.js --exec babel-node"
+    "dev:host": "./node_modules/nodemon/bin/nodemon.js --inspect src/server/server.js --exec babel-node"
   },
   "keywords": [
     "js",
@@ -35,6 +38,7 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^10.2.1",
@@ -51,6 +55,7 @@
     "jest": "^20.0.4",
     "morgan": "^1.8.2",
     "nodemon": "^1.11.0",
+    "pm2": "^2.5.0",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.8",
     "webpack": "^2.6.1",
@@ -58,7 +63,7 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
-    "express": "^4.15.3",
-    "compression": "^1.6.2"
+    "compression": "^1.6.2",
+    "express": "^4.15.3"
   }
 }

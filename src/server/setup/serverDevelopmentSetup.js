@@ -1,8 +1,8 @@
 import webpack from 'webpack'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackMiddleware from 'webpack-dev-middleware'
-import webpackConfig from '../webpack.config'
-import { isProd } from '../src/shared/util'
+import webpackConfig from '../../../webpack.config'
+import { isProd } from '../../shared/util'
 
 export default function (app) {
   if (!isProd) {
