@@ -1,4 +1,6 @@
-import Application from './class/Application'
+// @flow
+
+import Application from '../model/Application'
 
 const frontend = new Application('This is Frontend, Hello World!')
 

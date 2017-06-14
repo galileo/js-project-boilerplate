@@ -1,10 +1,15 @@
+// @flow
+
 class StringDecorator {
-  constructor (prefix, postfix) {
+  prefix: string
+  postfix: string
+
+  constructor (prefix: string, postfix: string) {
     this.prefix = prefix
     this.postfix = postfix
   }
 
-  decorate (value) {
+  decorate (value: string): string {
     return `${this.prefix}${value}${this.postfix}`
   }
 }
