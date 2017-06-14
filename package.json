@@ -10,7 +10,7 @@
     "start": "yarn dev:docker",
     "test": "eslint src --ext .jsx,.js && jest --coverage && flow",
     "webpack": "webpack --progress --colors",
-    "prod:build": "rimraf lib && babel src -d lib --ignore .(test|spec).js",
+    "prod:build": "rimraf lib && babel src -d lib --ignore .spec.js,.test.js",
     "dev:docker": "./node_modules/nodemon/bin/nodemon.js --inspect=0.0.0.0:9229 server.js --exec babel-node",
     "dev:host": "./node_modules/nodemon/bin/nodemon.js --inspect server.js --exec babel-node"
   },
