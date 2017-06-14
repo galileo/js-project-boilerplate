@@ -1,10 +1,10 @@
 import express from 'express'
-import dockerSetup from './server/serverDockerSetup'
-import serverDevelopmentSetup from './server/serverDevelopmentSetup'
-import serverProductionSetup from './server/serverProductionSetup'
-import { WEB_PORT, APP_NAME } from './src/shared/config'
-import { isProd } from './src/shared/util'
-import tpl from './src/server/render-app'
+import dockerSetup from './setup/serverDockerSetup'
+import serverDevelopmentSetup from './setup/serverDevelopmentSetup'
+import serverProductionSetup from './setup/serverProductionSetup'
+import { WEB_PORT, APP_NAME } from '../shared/config'
+import { isProd } from '../shared/util'
+import tpl from './render-app'
 
 const app = express()
 
