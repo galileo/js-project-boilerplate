@@ -2,6 +2,10 @@
   "name": "js-project-boilerplate",
   "version": "1.0.0",
   "description": "Next project best choices as an boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/galileo/js-project-boilerplate.git"
+  },
   "browserslist": [
     "> 1%"
   ],
