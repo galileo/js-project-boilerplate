@@ -1,3 +1,14 @@
 machine:
   services:
     - docker
+
+test:
+  override:
+    - echo "test"
+
+deployment:
+  hub:
+    branch: issue-25-circle-ci
+    commands:
+      - docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push galileo/js-project-boilerplate
