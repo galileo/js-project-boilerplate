@@ -17,4 +17,5 @@ deployment:
     branch: issue-25-circle-ci
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker build -t galileo/js-project-boilerplate
       - docker push galileo/js-project-boilerplate
