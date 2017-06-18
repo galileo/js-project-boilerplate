@@ -1,10 +1,15 @@
-machine:
-  services:
-    - docker
+version: 2
+
+jobs:
+  build:
+    services:
+      - docker
 
 dependencies:
   pre:
     - docker info
+    - ls -al
+    - pwd
     - docker build -t galileo/js-project-boilerplate .
   override:
     - echo "dev"
