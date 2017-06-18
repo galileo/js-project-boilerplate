@@ -2,8 +2,20 @@ version: 2
 
 jobs:
   build:
-    services:
-      - docker
+    working_directory: /app
+    docker:
+      - image: docker:17.05.0-ce
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+        name: Build docker image
+        command: |
+          docker info
+          pwd
+          ls -al
+          docker build -t galileo/js-project-boilerplate .
+          docker images
 
 dependencies:
   pre:
