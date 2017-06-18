@@ -18,7 +18,8 @@ jobs:
       - run:
           name: Test application
           command: |
-            docker run --rm galileo/js-project-boilerplate yarn test
+            docker-compose build
+            docker-compose run node yarn test
       - run:
           name: Login to docker engine
           command: |
