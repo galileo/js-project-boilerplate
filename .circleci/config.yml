@@ -19,4 +19,4 @@ jobs:
           name: Push docker image
           command: |
             docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-            docker push galileo/js-project-boilerplate:latest
+            docker push galileo/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
