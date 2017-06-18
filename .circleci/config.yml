@@ -16,6 +16,10 @@ jobs:
           command: |
             docker build -t galileo/js-project-boilerplate .
       - run:
+          name: Test application
+          command: |
+            docker run --rm galileo/js-project-boilerplate yarn test
+      - run:
           name: Login to docker engine
           command: |
             docker login -u $DOCKER_USER -p $DOCKER_PASS
