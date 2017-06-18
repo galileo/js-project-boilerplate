@@ -19,4 +19,5 @@ jobs:
           name: Push docker image
           command: |
             docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-            docker push galileo/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+            docker tag $CIRCLE_BRANCH $DOCKER_USER/$CIRCLE_PROJECT_REPONAME
+            docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
