@@ -9,13 +9,13 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-        name: Build docker image
-        command: |
-          docker info
-          pwd
-          ls -al
-          docker build -t galileo/js-project-boilerplate .
-          docker images
+          name: Build docker image
+          command: |
+            docker info
+            pwd
+            ls -al
+            docker build -t galileo/js-project-boilerplate .
+            docker images
 
 dependencies:
   pre:
