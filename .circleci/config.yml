@@ -28,7 +28,7 @@ jobs:
             ls -al
             docker-compose up -d --build
             docker images
-            docker-compose run node yarn test
+            docker-compose exec node yarn test
       - run:
           name: Login to docker engine
           command: |
