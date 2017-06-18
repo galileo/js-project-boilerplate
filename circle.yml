@@ -5,6 +5,7 @@ machine:
 dependencies:
   pre:
     - docker info
+    - docker build -t galileo/js-project-boilerplate
   override:
     - echo "dev"
 
@@ -16,6 +17,6 @@ deployment:
   hub:
     branch: issue-25-circle-ci
     commands:
+      - docker images
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker build -t galileo/js-project-boilerplate
-      - docker push galileo/js-project-boilerplate
+      - docker push galileo/js-project-boilerplate:latest
