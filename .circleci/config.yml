@@ -9,31 +9,14 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
+          name: Check docker version
+          command: docker info
+      - run:
           name: Build docker image
           command: |
-            docker info
-            pwd
-            ls -al
             docker build -t galileo/js-project-boilerplate .
-            docker images
-
-dependencies:
-  pre:
-    - docker info
-    - ls -al
-    - pwd
-    - docker build -t galileo/js-project-boilerplate .
-  override:
-    - echo "dev"
-
-test:
-  override:
-    - echo "$DOCKER_EMAIL $DOCKER_USER test"
-
-deployment:
-  hub:
-    branch: issue-25-circle-ci
-    commands:
-      - docker images
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push galileo/js-project-boilerplate:latest
+      - run:
+          name: Push docker image
+          command: |
+            docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+            docker push galileo/js-project-boilerplate:latest
