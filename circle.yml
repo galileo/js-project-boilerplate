@@ -5,7 +5,7 @@ machine:
 dependencies:
   pre:
     - docker info
-    - docker build -t galileo/js-project-boilerplate
+    - docker build -t galileo/js-project-boilerplate .
   override:
     - echo "dev"
 
