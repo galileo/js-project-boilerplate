@@ -21,11 +21,11 @@ jobs:
       - run:
           name: Build docker image
           command: |
-            docker build --build-arg NODE_ENV=development -t galileo/js-project-boilerplate .
+            docker build --build-arg NODE_ENV=development -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME .
       - run:
           name: Test application
           command: |
-            docker run --rm galileo/js-project-boilareplate yarn test
+            docker run --rm $DOCKER_USER/$CIRCLE_PROJECT_REPONAME yarn test
       - run:
           name: Login to docker engine
           command: |
