@@ -18,17 +18,14 @@ jobs:
       - run:
           name: Check docker version
           command: docker info
-#      - run:
-#          name: Build docker image
-#          command: |
-#            docker build -t galileo/js-project-boilerplate .
+     - run:
+         name: Build docker image
+         command: |
+           docker build --build-arg NODE_ENV=development -t galileo/js-project-boilerplate .
       - run:
           name: Test application
           command: |
-            ls -al
-            docker-compose up -d --build
-            docker images
-            docker-compose exec node ls -al && yarn test
+            docker run --rm galileo/js-project-boilareplate yarn test
       - run:
           name: Login to docker engine
           command: |
