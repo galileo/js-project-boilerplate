@@ -7,7 +7,9 @@ jobs:
       - image: docker:17.05.0-ce
     steps:
       - checkout
-      - setup_remote_docker
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
       - run:
           name: Install dependencies
           command: |
