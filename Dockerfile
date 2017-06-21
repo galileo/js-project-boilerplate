@@ -26,6 +26,7 @@ ENV PATH /opt/node_modules/.bin:$PATH
 # copy in our source code last, as it changes the most
 WORKDIR /opt/app
 COPY . /opt/app
+RUN ls -al
 
 # if you want to use npm start instead, then use `docker run --init in production`
 # so that signals are passed properly. Note the code in index.js is needed to catch Docker signals

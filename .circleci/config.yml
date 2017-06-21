@@ -1,0 +1,42 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: /app
+    docker:
+      - image: docker:17.05.0-ce
+    steps:
+      - checkout
+      - setup_remote_docker:
+          reusable: true
+          exclusive: false
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --no-cache \
+              py-pip=9.0.0-r1
+            pip install \
+              docker-compose==1.12.0
+      - run:
+          name: Check docker version
+          command: docker info
+      - run:
+          name: Build docker image
+          command: |
+            docker build --build-arg NODE_ENV=development -t $DOCKER_USER/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Test application
+          command: |
+            docker run --rm $DOCKER_USER/$CIRCLE_PROJECT_REPONAME yarn test
+      - run:
+          name: Login to docker engine
+          command: |
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run:
+          name: Tag image
+          command: |
+            docker tag $DOCKER_USER/$CIRCLE_PROJECT_REPONAME $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
+      - run:
+          name: Push docker image
+          command: |
+            docker push $DOCKER_USER/$CIRCLE_PROJECT_REPONAME:$CIRCLE_BRANCH
